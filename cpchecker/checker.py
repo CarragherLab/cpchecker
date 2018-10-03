@@ -45,15 +45,20 @@ class Checker(object):
             commands = [i.strip() for i in f.readlines()]
         return commands
 
+    @staticmethod
+    def names_from_commands(commands_list):
+        return [i.split()[-1].split(os.sep)[-1] for i in commands_list]
+
     def get_failed_task_ids(self):
         """docstring"""
         # get which line in commands corresponds to the failed task name
         # which will be the task_ID number
         task_ids = []
         commands = self.get_commands()
+        commands_names = self.names_from_commands(commands)
         failed_task_names = self.get_failed_task_names()
         for task_name in failed_task_names:
-            for task_id, command in enumerate(commands, 1):
-                if task_name in command:
+            for task_id, command in enumerate(commands_names, 1):
+                if task_name == command:
                     task_ids.append(task_id)
         return task_ids

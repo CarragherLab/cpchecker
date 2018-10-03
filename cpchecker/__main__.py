@@ -1,6 +1,6 @@
 import sys
 
-from checker import Checker
+from cpchecker.checker import Checker
 
 def main():
     config_path = sys.argv[1]
