@@ -1,0 +1,1 @@
+from cpchecker import checker
